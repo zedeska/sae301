@@ -12,6 +12,8 @@ export function normalizeLyonParking(lyonData: any[]){
                     place_tot: props.nb_places, 
                     place_dispo: props.places_disponibles,
                     cout: props.tarif_1h ? `${props.tarif_1h}€/1h` : null,
+                    pmr: props.nb_pmr,
+                    borne_recharge: props.nb_voitures_electriques,
                     coordinates: {
                         lattitude: geom.coordinates[1], 
                         longitude: geom.coordinates[0]

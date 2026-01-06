@@ -101,7 +101,7 @@ class Map {
             const div = document.createElement('div');
             div.innerHTML = `
                 <h3>${parking.lib} - ${parking.type}</h3>
-                <p>Places disponibles: ${parking.place_dispo !== null ? `${parking.place_dispo}/${parking.place_tot}` : 'Inconnu'}</p>
+                <p>Places disponibles: ${parking.place_dispo !== null ? `${parking.place_dispo}/${parking.place_tot}` : `?/${parking.place_tot}`}</p>
                 <p>Coût: ${parking.cout !== null ? parking.cout : 'Inconnu'}</p>
             `;
             const btn = document.createElement('button');
