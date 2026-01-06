@@ -9,6 +9,8 @@ export function normalizeParisParking(parisData: any[]){
                     place_tot: place.nb_places, 
                     place_dispo: null,
                     cout: place.tarif_1h ? `${place.tarif_1h}€/h` : null,
+                    pmr: place.nb_pmr,
+                    borne_recharge: place.nb_voitures_electriques,
                     coordinates: {
                         lattitude: place.geo_point_2d.lat,
                         longitude: place.geo_point_2d.lon
