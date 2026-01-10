@@ -8,6 +8,7 @@ export function normalizeParisParking(parisData: any[]){
                     lib: place.nom,
                     place_tot: place.nb_places, 
                     place_dispo: null,
+                    payant : place.tarif_1h ? true : false,
                     cout: place.tarif_1h ? `${place.tarif_1h}€/h` : null,
                     pmr: place.nb_pmr,
                     borne_recharge: place.nb_voitures_electriques,

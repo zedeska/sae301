@@ -6,8 +6,26 @@ export class Parking {
     parkingsDsp : any[] = [];
     parkings : any[] = [];
     private readonly TFL_API_KEY = "06dcde4d1865490d943d578017cd8518"; // Clé récupérer suite à inscription
-
-    getNearParkings(position: LngLat, dspOnly: boolean, radius: number = 3000) {
+// prefence : [0] gratuit seulement , [1] pmr seulement, [2] borne de recharge seulement
+    getParkingPreference(parkings : any[], position: LngLat, preference: number[]){
+        if(preference[0] === 1){
+            parkings = parkings.filter(parking => {
+                return parking.payant === false;
+            });
+        }
+        if(preference[1] === 1){
+            parkings = parkings.filter(parking => {
+                return parking.pmr && parking.pmr > 0;
+            });
+        }
+        if(preference[2] === 1){
+            parkings = parkings.filter(parking => {
+                return parking.borne_recharge && parking.borne_recharge > 0;
+            }); 
+        }       
+        return parkings;
+    }
+    getNearParkings(position: LngLat, dspOnly: boolean, radius: number = 3000, preference = []) {
         let nearbyParkings = [];
         
         const dspParkings = this.parkingsDsp.filter(parking => {
@@ -25,6 +43,7 @@ export class Parking {
             });
             nearbyParkings.push(...otherParkings);
         }
+        nearbyParkings = this.getParkingPreference(nearbyParkings, position, preference);
         return nearbyParkings;
     }
 
@@ -42,7 +61,6 @@ export class Parking {
                 nearestParking = parking;
             }
         }
-
         return nearestParking;
     }
     // metz seulement + sert de base pour les autres villes
@@ -60,6 +78,7 @@ export class Parking {
                     lib: feature.properties.lib,
                     place_tot: feature.properties.place_total,
                     place_dispo: feature.properties.place_libre,
+                    payant: feature.properties.cout === null ? false : true,
                     cout: feature.properties.cout,
                     coordinates: {
                         lattitude: feature.geometry.coordinates[1],

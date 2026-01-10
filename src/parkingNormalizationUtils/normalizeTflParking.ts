@@ -18,6 +18,7 @@ export function normalizeTflParking(tflData: any[]) {
                 lib: place.commonName,
                 place_tot: totalSpacesStr ? parseInt(totalSpacesStr, 10) : null,
                 place_dispo: null,
+                payant : dailyPrice ? true : false,
                 cout: dailyPrice ? `Daily: £${dailyPrice}` : null,
                 pmr: disabledSpacesStr ? parseInt(disabledSpacesStr, 10) : 0,
                 borne_recharge: chargingPointsStr === 'False' ? 0 : chargingPointsStr,
