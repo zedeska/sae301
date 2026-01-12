@@ -5,12 +5,16 @@ class User{
     hauteur: number;
     pmr: boolean;
     dspOnly: boolean;
+    elec: boolean;
+    free: boolean;
     username: string = "";
     token:  string = "";
     
-    constructor(hauteur: number, pmr: boolean, dspOnly: boolean){
+    constructor(hauteur: number, pmr: boolean,elec: boolean,free: boolean, dspOnly: boolean){
         this.hauteur = hauteur;
         this.pmr = pmr;
+        this.elec = elec;
+        this.free = free;
         this.dspOnly = dspOnly;
     }
 
