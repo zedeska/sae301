@@ -5,31 +5,26 @@
 
 </script>
 
-<nav class="absolute left-1 top-1 z-20 bg-white p-2 rounded-md flex gap-4">
-    <button class="cursor-pointer" on:click={() => open = !open}><i class="fa-solid fa-bars"></i></button>
+{#if open}
+    <!-- Backdrop to close menu when clicking outside -->
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div class="fixed inset-0 z-10" on:click={() => open = false}></div>
+{/if}
+
+<nav class="absolute left-1 top-1 z-20 bg-white p-2 rounded-md flex gap-4 items-center">
+    <div class="relative">
+        <button class="cursor-pointer" on:click={() => open = !open}><i class="fa-regular fa-circle-user"></i></button>
+        {#if open}
+            <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-xl py-1 z-20 border border-gray-100 overflow-hidden">
+                <button 
+                    class="cursor-pointer w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors" 
+                    on:click={() => { goto("/parametres"); open = false; }}
+                >
+                    Paramètres
+                </button>
+            </div>
+        {/if}
+    </div>
     <button class="cursor-pointer" on:click={() => goto("/")} ><i class="fa-solid fa-house"></i></button>
 </nav>
-
-<aside class:open class="bg-black/50 w-full h-full" on:click={() => open = false}>
-    <div class="w-1/4 margin-3 rounded-lg bg-white h-full flex flex-col" on:click|stopPropagation>
-        <div>
-            <button class="cursor-pointer relative left-1 top-0" on:click={() => open = false}><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <button class="cursor-pointer" on:click={() => { goto("/parametres"); open = false; }}><h2>Paramètres</h2></button>
-    </div>
-</aside>
-
-<style>
-    aside {
-        transition: opacity 0.5s ease-in-out;
-        left: -100%;
-        position: absolute;
-        z-index: 40;
-        opacity: 0;
-    }
-
-    .open {
-        left: 0;
-        opacity: 1;
-    }
-</style>

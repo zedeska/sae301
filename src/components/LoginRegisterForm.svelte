@@ -16,6 +16,11 @@
 </script>
 
 <div class="items-center justify-center ml-auto mr-auto min-h-screen flex flex-col">
+  {#if errorMessage !== ""}
+  <div class="text-red-600 text-center mt-2">
+    {errorMessage}
+  </div>
+{/if}
 {#if register}
     <div class="w-5/6 flex flex-col gap-3 border-2 border-[#007cbf] rounded-lg p-4 text-center">
       <h2>S'enregistrer sur Parkest</h2>
@@ -50,11 +55,5 @@
         }
       }}>Login</button>
     </div>
-{/if}
-
-{#if errorMessage !== ""}
-  <div class="text-red-600 text-center mt-2">
-    {errorMessage}
-  </div>
 {/if}
 </div>

@@ -17,6 +17,11 @@
         <label for=""><h2 class="md:text-xl text-lg">PMR (Mobilité réduite) :</h2></label>
         <input type="checkbox" name="" id="" bind:checked={$UserContent.pmr}/>
     </div>
+
+    <div class="flex flex-row gap-3 justify-between">
+        <label for=""><h2 class="md:text-xl text-lg">Véhicule électrique ? :</h2></label>
+        <input type="checkbox" name="" id="" bind:checked={$UserContent.electrique}/>
+    </div>
     
     <div class="flex flex-row gap-3 justify-between">
         <label for=""><h2 class="md:text-xl text-lg">Uniquement parking avec disponibilité :</h2></label>
